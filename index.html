@@ -47,12 +47,19 @@
         <div class="row mt-4">
             <div class="col-md-4 bg-danger text-white">
                 <h2>Searches</h2>
-                <form id="searchForm">
-                    <div class="form-group">
-                        <label for="searchInput" class="form-label">Search:</label>
-                        <input type="text" class="form-control" id="searchInput" placeholder="Enter song or artist">
+                <form>
+                  <div class="row">
+                    <div class="col">
+                      <input type="text" class="form-control input-artist" placeholder="Name of Artist">
                     </div>
-                    <button type="submit" class="btn btn-primary" id="search-button">Search</button>
+                    <div class="col">
+                      <input type="text" class="form-control input-song" placeholder="Name of Song">
+                    </div>
+                  </div>
+                  <div class="text-center">
+                      <button type="button" class="btn btn-outline-success btn-lg mt-4 find-btn">Find Lyrics!</button>
+                     <button type="button" class="btn btn-outline-success btn-lg mt-4 view-btn">See Video!</button>
+                      </div>
                 </form>
                 <div id="searchResults" class="mt-4">
                     <!-- Search results will be displayed here -->
@@ -60,14 +67,23 @@
             </div>
             <div class="col-md-8 bg-success text-white">
                 <div id="youtubePlayer">
-                    <h2>YouTube Video</h2>
-                    <!-- YouTube video will be embedded here -->
+                   <!-- YouTube video will be embedded here -->
                 </div>
-                <div id="lyrics" class="mt-4">
-                    <!-- Lyrics will be displayed here -->
+                
+        </div>
+        <div class="text-center">
+          <div class="card text-white bg-info mb-3 mt-5 text-center">
+                <div class="card-header">Lyric Box</div>
+                <div class="card-body">
+                  <h5 class="card-title song-desc">Your quick lyric finder!</h5>
+                  <p class="card-text lyric-text">Simply type in the artist name and the song name, and get the lyrics!</p>
                 </div>
             </div>
-        </div>
+            <div class="alert alert-danger error-box" role="alert">
+              <h4 class="alert-heading text-center">Error!</h4>
+              <p class="text-center">Please recheck your input fields.</p>
+            </div>
+    </div>
     </div>
     <!-- Bootstrap JS, jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
