@@ -14,77 +14,75 @@
 </head>
 <body>
     <!-- Nav bar -->
-    <nav>
-        <!--Title and logo in bootsrap icons-->
-  <div class="navbar navbar-expand-lg pt-1 bg-primary navbar-dark fixed-top">
-<!--Adding container and code from Bootstrap 5 documentation template to add nav items-->
+  <nav class="navbar bg-body-tertiary">
+    <div class="container">
+      <span class="navbar-brand mb-0 h1"><i class="bi bi-music-note-beamed"></i>LyricLink</span>
+    </div>
+  </nav>
+
+    </header>
+      
 <div class="container-fluid">
-<a href="#" class="navbar-brand px-5 mx-5"> <i class="bi bi-music-note-beamed"></i>LyricsLink</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#about-me">About Me</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#work">Work</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#contact-me">Contact Me</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#">Resume</a>
-        </li>
-      </ul>
+  <div class="container-fluid mt-5 text-center"><h1>Find your favourite songs and sing along with the lyrics!</h1>
+    <div class="container lg-12">
+      <!-- <h1 class="mt-5">Song & Lyrics</h1> -->
+      <div class="row mt-4">
+          <div class="col-md-12 bg-purple text-white">
+              <!-- <h2>Searches</h2> -->
+              <form>
+                <div class="row">
+                  <div class="col">
+                    <input type="text" class="form-control input-artist artist-name" placeholder="Name of Artist">
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control input-song" placeholder="Name of Song">
+                    <button type="button" class="btn btn-outline text-white btn-lg mt-4 items-align-center find-btn">Find Lyrics!</button>
+                    <button type="button" class="btn btn-outline text-white btn-lg mt-4 items-align-center view-btn">See Video!</button>
+                  </div>
+                </div>
+                <div class="text-center">
+                    
+                    
+                    </div>
+              </form>
+    
+    </div>  
+        </div>
+              
+        
+        </div>
+        </div>
+    </div>
+        </div>
+        </div>
+        </div>
+  </div>
+  <div class="container my-4">
+    <div class = "row">
+      <div class="col">
+        <div class="col-lg-9 bg-black text-white text-center">
+          <div id="youtubePlayer">
+            <div>
+              <!-- <iframe src="http://www.youtube.com/embed/EDwb9jOVRtU"></iframe> -->
+            </div> 
+            <h2>YouTube Video</h2>
+            <!-- <!-YouTube video will be embedded here --> 
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 bg-white text-black text-center">
+      <div id="showLyrics">
+        <h5 class="card-title song-title">The Song title</h5>
+        <p class="card-text lyric-text"></p>
+        <!-- <!-YouTube video will be embedded here --> 
+    </div>
+    </div>
     </div>
   </div>
-   </div>
-</nav>
-    <div class="container">
-        <h1 class="mt-5">Song & Lyrics</h1>
-        <div class="row mt-4">
-            <div class="col-md-4 bg-danger text-white">
-                <h2>Searches</h2>
-                <form>
-                  <div class="row">
-                    <div class="col">
-                      <input type="text" class="form-control input-artist" placeholder="Name of Artist">
-                    </div>
-                    <div class="col">
-                      <input type="text" class="form-control input-song" placeholder="Name of Song">
-                    </div>
-                  </div>
-                  <div class="text-center">
-                      <button type="button" class="btn btn-outline-success btn-lg mt-4 find-btn">Find Lyrics!</button>
-                     <button type="button" class="btn btn-outline-success btn-lg mt-4 view-btn">See Video!</button>
-                      </div>
-                </form>
-                <div id="searchResults" class="mt-4">
-                    <!-- Search results will be displayed here -->
-                </div>
-            </div>
-            <div class="col-md-8 bg-success text-white">
-                <div id="youtubePlayer">
-                   <!-- YouTube video will be embedded here -->
-                </div>
-                
-        </div>
-        <div class="text-center">
-          <div class="card text-white bg-info mb-3 mt-5 text-center">
-                <div class="card-header">Lyric Box</div>
-                <div class="card-body">
-                  <h5 class="card-title song-desc">Your quick lyric finder!</h5>
-                  <p class="card-text lyric-text">Simply type in the artist name and the song name, and get the lyrics!</p>
-                </div>
-            </div>
-            <div class="alert alert-danger error-box" role="alert">
-              <h4 class="alert-heading text-center">Error!</h4>
-              <p class="text-center">Please recheck your input fields.</p>
-            </div>
-    </div>
-    </div>
+  </body>
+  
+          
+    <!-- </div> -->
     <!-- Bootstrap JS, jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
