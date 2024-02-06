@@ -81,3 +81,52 @@ allowfullscreen: ''
     $('#youtubePlayer').append($iframe);
 });
 }
+// Function to retrieve recent searches from local storage
+function getRecentSearches() {
+    // Retrieve recent searches from local storage
+    let recentSearches = localStorage.getItem('recentSearches');
+
+    // If no recent searches found, return an empty array
+    if (!recentSearches) {
+      return [];
+    }
+
+    // Parse recent searches from JSON format
+    return JSON.parse(recentSearches);
+  }
+
+  // Function to render recent searches in HTML
+  function renderRecentSearches() {
+    const recentSearchList = document.getElementById('recentSearchList');
+    recentSearchList.innerHTML = ''; // Clear existing list
+
+    // Retrieve recent searches
+    const recentSearches = getRecentSearches();
+
+    // Render each search item in HTML
+    recentSearches.forEach((search, index) => {
+      const li = document.createElement('li');
+      li.textContent = search;
+
+      // Create a button to remove the search item
+      const removeButton = document.createElement('button');
+      removeButton.textContent = 'Remove';
+      removeButton.addEventListener('click', () => {
+        removeRecentSearch(index);
+        renderRecentSearches();
+      });
+
+      li.appendChild(removeButton);
+      recentSearchList.appendChild(li);
+    });
+  }
+
+  // Function to remove a recent search item
+  function removeRecentSearch(index) {
+    const recentSearches = getRecentSearches();
+    recentSearches.splice(index, 1);
+    localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
+  }
+
+  // Call the render function when the page loads
+  window.onload = renderRecentSearches;
