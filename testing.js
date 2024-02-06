@@ -28,7 +28,7 @@ function findLyrics() {
             $('#recentSearchList').prepend(listItem);
             let artistName = songDetails[0].split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
             let songName = songDetails[1].split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-            songtitle.text(`${artistName}${songName}`);
+            songtitle.text(`${artistName}-${songName}`);
             let formattedLyrics = lyric.lyrics.split("\n").slice(1).join("<br />");
             lyricField.html(formattedLyrics);
             inputArtist.val('');
