@@ -2,13 +2,30 @@ const inputArtist = $('.input-artist');
 const inputSong = $('.input-song');
 const buttonFind = $('.find-btn');
 const buttonView = $('.view-btn');
-const songtitle = $('.song-title');
+const songTitle = $('.song-title');
 const lyricField = $('.lyric-text');
 const errorBox = $('.error-box');
 let search = [""];
 var searchStorage = JSON.parse(localStorage.getItem("search")) || []
 
 buttonFind.on('click', findLyrics);
+function formatSongDetails(artist, song) {
+    let songDetails = `${artist}-${song}`.split('-');
+    let artistName = songDetails[0].split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    let songName = songDetails[1].split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    return { artistName, songName };
+}
+
+function formatLyrics(lyrics) {
+    return lyrics.split("\n").slice(1).join("<br />");
+}
+
+function updateUIWithLyrics(lyrics, artist, song) {
+    let { artistName, songName } = formatSongDetails(artist, song);
+    songTitle.text(`${artistName}-${songName}`);
+    lyricField.html(formatLyrics(lyrics));
+}
+
 function findLyrics() {
     let artistVal = inputArtist.val().trim();
     let songVal = inputSong.val().trim();
@@ -22,15 +39,18 @@ function findLyrics() {
             return response.json();
         })
         .then(lyric => {
-            localStorage.setItem(`lyrics-${artistVal}-${songVal}`, lyric.lyrics);
-            let songDetails = `${artistVal}-${songVal}`.split('-');
-            let listItem = $('<li>').addClass('list-group-item').text(songDetails);
+            let listItem = $('<li>').addClass('list-group-item').text(`${artistVal}-${songVal}`);
             $('#recentSearchList').prepend(listItem);
-            let artistName = songDetails[0].split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-            let songName = songDetails[1].split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-            songtitle.text(`${artistName}-${songName}`);
-            let formattedLyrics = lyric.lyrics.split("\n").slice(1).join("<br />");
-            lyricField.html(formattedLyrics);
+            listItem.on('click', function() {
+                let storedLyrics = localStorage.getItem(`lyrics-${artistVal}-${songVal}`);
+                if (storedLyrics) {
+                    // Display the lyrics from local storage
+                    updateUIWithLyrics(storedLyrics, artistVal, songVal);
+                } else {
+                    console.error('Lyrics not found in local storage');
+                }
+            });
+            updateUIWithLyrics(lyric.lyrics, artistVal, songVal);
             inputArtist.val('');
             inputSong.val('');
             localStorage.setItem(`lyrics-${artistVal}-${songVal}`, lyric.lyrics);
@@ -39,9 +59,12 @@ function findLyrics() {
             errorBox.show();
             setTimeout(() => {
                 errorBox.hide();
-            }, 3000);
+            },  3000);
         });
     }
+}
+function displayLyrics(lyrics, artist, song) {
+    updateUIWithLyrics(lyrics, artist, song);
 }
 
 buttonView.on('click', getVideo);
@@ -65,9 +88,39 @@ fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURICo
 }
 
 if (videoId !== null) {
-console.log('Found url: ', videoId);
+    console.log('Found url: ', videoId);
+    
+    // Update the search history in local storage
+    let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+    searchHistory.unshift({ artist, song, videoId });
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+
+    // Prepend the search term to the recent search list
+    let listItem = $('<li>').addClass('list-group-item').text(`${artist}-${song}`);
+    $('#recentSearchList').prepend(listItem);
+    localStorage.setItem('videoId', videoId);
+    listItem.on('click', function() {
+        var videoId = localStorage.getItem('videoId');
+        if (videoId) {
+            // Create an iframe
+            let $iframe = $('<iframe/>', {
+                width: '560',
+                height: '315',
+                src: `https://www.youtube.com/embed/${videoId}`,
+                frameborder: '0',
+                allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
+                allowfullscreen: ''
+            });
+            
+            // Empty the player and append the new iframe
+            $('#youtubePlayer').empty().append($iframe);
+        } else {
+            console.error('Video ID not found in local storage');
+        }
+    });
+    
 } else {
-console.log('No match found');
+    console.log('No match found');
 }
 
 // Clear the old video
@@ -86,4 +139,3 @@ allowfullscreen: ''
     $('#youtubePlayer').append($iframe);
 });
 }
-
