@@ -100,8 +100,9 @@ var listItem = $('<li>').addClass('list-group-item').text(`Video: ${artist}${son
 $('#recentSearchList').prepend(listItem);
 localStorage.setItem('videoId', videoId);
 listItem.on('click', function() {
-    var videoId = localStorage.getItem('videoId');
+    var videoId = localStorage.getItem('videoId', videoId);
     if (videoId) {
+        $('#youtubePlayer').empty().append($iframe);
         // Create an iframe
         var $iframe = $('<iframe/>', {
             width: '560',
