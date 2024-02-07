@@ -86,4 +86,39 @@
 }
 .list-group-item {
 cursor: pointer;
+
+@media screen and (max-width: 768px) {
+  #youtubePlayer, #showLyrics {
+    padding: 20px;
+  } 
+   #youtubePlayer, #showLyrics {
+    width: 45%;
+   }
+   .find-btn {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-left: 300px;
+   }
+
+   .view-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+   }
+     }
+
+
+@media screen and (max-width: 480px) {
+   #youtubePlayer, #showLyrics  {
+    width: 100%;
+  }
+  .find-btn, .view-btn {
+    display: flex;
+    position: relative;
+    left: 300px;
+  }
+
+}
 }
