@@ -86,6 +86,7 @@
 }
 .list-group-item {
 cursor: pointer;
+}
 
 @media screen and (max-width: 768px) {
   #youtubePlayer, #showLyrics {
@@ -120,5 +121,4 @@ cursor: pointer;
     left: 300px;
   }
 
-}
 }
