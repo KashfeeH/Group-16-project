@@ -1,7 +1,72 @@
-body{
+.body{
   padding-bottom: 1000px;
 }
 
+.navbar, .navbar-brand, .navbar-toggler
+.navbar-toggler-icon{
+  color: white;
+  font-family:Arial, Helvetica, sans-serif;
+  align-items: center;
+  
+}
+
+.container-fluid {
+  padding-bottom: 4px;
+  padding-top: 4px;
+}
+
+.lg-12{
+  width: 100vw;
+}
+.navbar, h1{
+  width: 100%;
+  padding: 10px;
+  color: white;
+  align-items: center;
+  
+}
+.navbar-brand{
+ 
+  color: #210124;
+  font-size:  28px;
+}
+.btn-outline{
+  border: 1px solid white;
+}
+.view-btn {
+  translate: -470px -75px;
+}
+.find-btn {
+  translate: -315px -4px;
+}
+.bi{
+  color:#210124;
+  align-items: center;
+}
+.container-fluid{
+  background-color: #210124;
+}
+
+#youtubePlayer{
+  height: auto;
+  background-color: black;
+  padding-bottom: 25px;
+  padding-top: 25px;
+}
+
+#showLyrics{
+  height: auto;
+}
+.btn, #searchForm{
+  display:flex;
+  position: relative;
+  left: 50%;
+}
+
+.artist-name{
+  height: 50x;
+  width: 100%;
+}
 .video{
   height: 500px;
   background-color: aliceblue;
@@ -10,4 +75,57 @@ body{
 .lyrics{
   border: 3px solid black;
   height: 500px;
+}
+.error-box { 
+  display: none;
+  position: absolute; 
+  top: 70%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  box-shadow: 3px 4px 5px rgba(0, 0, 0, .2); 
+}
+.list-group-item {
+cursor: pointer;
+color: white;
+font-family:Arial, Helvetica, sans-serif;
+background-color: #210124;
+}
+
+#recentSearchList{
+  padding-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  #youtubePlayer, #showLyrics {
+    padding: 20px;
+  } 
+   #youtubePlayer, #showLyrics {
+    width: 45%;
+   }
+   .find-btn {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-left: 300px;
+   }
+
+   .view-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+   }
+     }
+
+
+@media screen and (max-width: 480px) {
+   #youtubePlayer, #showLyrics  {
+    width: 100%;
+  }
+  .find-btn, .view-btn {
+    display: flex;
+    position: relative;
+    left: 300px;
+  }
+
 }
