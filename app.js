@@ -68,61 +68,121 @@ updateUIWithLyrics(lyrics, artist, song);
 }
 
 buttonView.on('click', getVideo);
-function getVideo()
-{
-const youtubeApikey = 'AIzaSyCxq1fOqiEee1Wk6c7izIOl5YX9YwZwDUE'
-var artist = inputArtist.val().trim();
-var song = inputSong.val().trim();
-var query = `${artist} ${song}`;
-fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&key=${youtubeApikey}`)
-.then(response => response.json())
-.then(data => {
-var videoId = null;
-for (var i = 0; i < data.items.length; i++) {
-if (data.items[i].snippet.title.toLowerCase().includes(query.toLowerCase())) {
-    videoId = data.items[i].id.videoId;
-    console.log("videoId", videoId)
-    break;
-}
+// function getVideo()
+// {
+// const youtubeApikey = 'AIzaSyDaJaU2_8QkMUfXJuAnrBOz_O5N8D_hvw4'
+// var artist = inputArtist.val().trim();
+// var song = inputSong.val().trim();
+// var query = `${artist} ${song}`;
+// fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&key=${youtubeApikey}`)
+// .then(response => response.json())
+// .then(data => {
+// var videoId = null;
+// for (var i = 0; i < data.items.length; i++) {
+// if (data.items[i].snippet.title.toLowerCase().includes(query.toLowerCase())) {
+//     videoId = data.items[i].id.videoId;
+//     console.log("videoId", videoId)
+//     break;
+// }
 
-}
+// }
 
-if (videoId !== null) {
-console.log('Found url: ', videoId);
+// if (videoId !== null) {
+// console.log('Found url: ', videoId);
 
-// Update the search history in local storage
-var searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
-searchHistory.unshift({ artist, song, videoId });
-localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+// // Update the search history in local storage
+// var searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+// searchHistory.unshift({ artist, song, videoId });
+// localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 
-// Prepend the search term to the recent search list
-var listItem = $('<li>').addClass('list-group-item').text(`Video: ${artist}${song}`);
-$('#recentSearchList').prepend(listItem);
-localStorage.setItem('videoId', videoId);
-listItem.on('click', function() {
-    var videoId = localStorage.getItem('videoId', videoId);
-    if (videoId) {
-        $('#youtubePlayer').empty().append($iframe);
-        // Create an iframe
-        var $iframe = $('<iframe/>', {
-            width: '560',
-            height: '315',
-            src: `https://www.youtube.com/embed/${videoId}`,
-            frameborder: '0',
-            allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
-            allowfullscreen: ''
-        });
+// // Prepend the search term to the recent search list
+// var listItem = $('<li>').addClass('list-group-item').text(`Video: ${artist}${song}`);
+// $('#recentSearchList').prepend(listItem);
+// localStorage.setItem('videoId', videoId);
+// listItem.on('click', function() {
+//     var storedVideoId = localStorage.getItem('videoId');
+//     if (storedVideoId) {
+//         console.log(`now play ${storedVideoId}`);
+//         // Create an iframe with the new video ID
+//         var $newIframe = $('<iframe/>', {
+//             width: '560',
+//             height: '315',
+//             src: `https://www.youtube.com/embed/${storedVideoId}`,
+//             frameborder: '0',
+//             allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
+//             allowfullscreen: ''
+//         });
         
-        // Empty the player and append the new iframe
-        $('#youtubePlayer').empty().append($iframe);
-    } else {
-        console.error('Video ID not found in local storage');
-    }
-});
+//         // Replace the old iframe with the new one
+//         $('#youtubePlayer').empty().append($newIframe);
+//     } else {
+//         console.log('Video ID not found in local storage');
+//     }
+// });
 
-} else {
-console.log('No match found');
+// } else {
+// console.log('No match found');
+// }
+function getVideo() {
+    const youtubeApikey = 'AIzaSyDaJaU2_8QkMUfXJuAnrBOz_O5N8D_hvw4';
+    var artist = inputArtist.val().trim();
+    var song = inputSong.val().trim();
+    var query = `${artist} ${song}`;
+    
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&key=${youtubeApikey}`)
+    .then(response => response.json())
+    .then(data => {
+        var videoId = null;
+        for (var i =  0; i < data.items.length; i++) {
+            if (data.items[i].snippet.title.toLowerCase().includes(query.toLowerCase())) {
+                videoId = data.items[i].id.videoId;
+                console.log("videoId", videoId);
+                break;
+            }
+        }
+
+        if (videoId !== null) {
+            console.log('Found url: ', videoId);
+
+            // Update the search history in local storage
+            var searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+            searchHistory.unshift({ artist, song, videoId });
+            localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+
+            // Prepend the search term to the recent search list
+            var listItem = $('<li>').addClass('list-group-item').text(`Video: ${artist}${song}`);
+            $('#recentSearchList').prepend(listItem);
+            listItem.data('videoId', videoId); // Store videoId in the element's data attribute
+
+            listItem.on('click', function() {
+                var storedVideoId = $(this).data('videoId'); // Retrieve videoId from the clicked element's data attribute
+                if (storedVideoId) {
+                    console.log(`now play ${storedVideoId}`);
+                    // Create an iframe with the new video ID
+                    var $newIframe = $('<iframe/>', {
+                        width: '560',
+                        height: '315',
+                        src: `https://www.youtube.com/embed/${storedVideoId}`,
+                        frameborder: '0',
+                        allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
+                        allowfullscreen: ''
+                    });
+                    
+                    // Replace the old iframe with the new one
+                    $('#youtubePlayer').empty().append($newIframe);
+                } else {
+                    console.log('Video ID not found in local storage');
+                }
+            });
+        } else {
+            console.log('No match found');
+        }
+
+        // Clear the old video
+        $('#youtubePlayer').empty();
+    });
 }
+
 
 // Clear the old video
 $('#youtubePlayer').empty();
@@ -138,5 +198,3 @@ allowfullscreen: ''
 
     // Append the iframe to your page
 $('#youtubePlayer').append($iframe);
-});
-}
