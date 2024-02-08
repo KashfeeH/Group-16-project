@@ -8,20 +8,28 @@ The web application does not require any installation and will run on most inter
 The Github repository is on this link: https://github.com/KashfeeH/Group-16-project.  
 
 ## Usage
-To have an idea of what is in this web application, please click on this link: https://kashfeeh.github.io/Group-16-project/.  
+To view a live version of this web appplication, please click on this link: https://kashfeeh.github.io/Group-16-project/.  
+  
 The Github repository can be found here: https://github.com/KashfeeH/Group-16-project.  
 
 A screenshot of the LyricLink web applications in default mode:  
 ![A screenshot of the LyricLink web applications in default mode:](./images/screen%201.png)  
   
-A screenshot of the LyricLink showing a searched video and the accomapnying lyrics.  
-![A screenshot of the LyricLink showing a searched video and the accomapnying lyrics.](./images/screen%202.png)  
+To search a required video, the user types into the 'Name of Artist' followed by a hyphen into the search box and 'Name of Song' box, then clicks on the 'See Video' button. This uses the YouTube API to fetch the result.  
+
+To search the accompanying lyrics, the user needs to delete the hyphen out of the 'Name of Artist' search box, then clicks on the 'See Lyrics' button. This uses the Lyrics.OVH API to fetch the result.  
+
+A screenshot of the LyricLink showing a searched video and the accompanying lyrics:  
+![A screenshot of the LyricLink showing a searched video and the accompanying lyrics.](./images/Screenshot%202024-02-08%20113435.png)  
   
 To search a required video, the user types into the 'Name of Artist' followed by a hyphen into the search box and 'Name of Song' box, then clicks on the 'See Video' button. This uses the YouTube API to fetch the result.  
 
 To search the accompanying lyrics, the user needs to delete the hyphen out of the 'Name of Artist' search box, then clicks on the 'See Lyrics' button. This uses the Lyrics.OVH API to fetch the result. 
 
 The user has the option to revisit previous searches by clicking on the 'Recent Search' buttons.  
+  
+A screenshot of the LyricLink showing how the user can access their recent searches:  
+![A screenshot of the LyricLink showing a searched video and the accompanying lyrics.](./images/Screenshot%202024-02-08%20113515.png)  
 
 ## Credits  
 This web application was created by Kashfee, Paul, Nadia, and Mike.  
