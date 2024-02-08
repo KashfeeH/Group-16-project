@@ -29,7 +29,7 @@ To search the accompanying lyrics, the user needs to delete the hyphen out of th
 The user has the option to revisit previous searches by clicking on the 'Recent Search' buttons.  
   
 A screenshot of the LyricLink showing how the user can access their recent searches:  
-![A screenshot of the LyricLink showing a searched video and the accompanying lyrics.](./images/Screenshot%202024-02-08%20113515.png)  
+![A screenshot of the LyricLink showing how the user can access their recent searches:](./images/Screenshot%202024-02-08%20113515.png)  
 
 ## Credits  
 This web application was created by Kashfee, Paul, Nadia, and Mike.  
